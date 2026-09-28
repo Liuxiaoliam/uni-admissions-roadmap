@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uni Roadmap — Grade 11 to Applications</title>
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --bg-strong: #edf2ff;
+        --surface: rgba(255, 255, 255, 0.86);
+        --surface-strong: #ffffff;
+        --surface-alt: #f8f9fc;
+        --border: rgba(148, 163, 184, 0.2);
+        --text: #18212d;
+        --muted: #546274;
+        --accent: #1d4ed8;
+        --accent-strong: #1e3a8a;
+        --accent-soft: #e8eeff;
+        --accent-soft-2: #dfe8ff;
+        --success: #0f9f6e;
+        --warning: #b8741a;
+        --shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+        --shadow-soft: 0 8px 20px rgba(15, 23, 42, 0.05);
+        --radius: 22px;
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, "Segoe UI", sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(29, 78, 216, 0.12), transparent 20%),
+          radial-gradient(circle at bottom right, rgba(37, 99, 235, 0.08), transparent 18%),
+          var(--bg);
+        color: var(--text);
+      }
+
+      a { color: inherit; }
+
+      .app {
+        min-height: 100vh;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 25;
+        backdrop-filter: blur(18px);
+        background: rgba(244, 247, 251, 0.8);
+        border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+      }
+
+      .topbar-inner,
+      .wrap {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 68px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+
+      .brand-mark {
+        width: 32px;
+        height: 32px;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--accent), #5b8cff);
+        color: white;
+        box-shadow: 0 10px 18px rgba(29, 78, 216, 0.25);
+        font-size: 14px;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border: 1px solid rgba(29, 78, 216, 0.2);
+        background: rgba(232, 238, 255, 0.8);
+        border-radius: 999px;
+        color: var(--accent-strong);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .hero {
+        padding: 52px 0 42px;
+      }
+
+      .hero-inner {
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      .hero-panel {
+        position: relative;
+        overflow: hidden;
+        border-radius: 32px;
+        border: 1px solid var(--border);
+        background: linear-gradient(125deg, rgba(255,255,255,0.9), rgba(247,250,255,0.9));
+        box-shadow: var(--shadow);
+        padding: 28px 28px 30px;
+      }
+
+      .hero-panel::before {
+        content: "";
+        position: absolute;
+        inset: 0 auto auto 62%;
+        width: 38%;
+        height: 100%;
+        background: radial-gradient(circle at center, rgba(114, 145, 255, 0.18), transparent 55%);
+        pointer-events: none;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        margin-bottom: 14px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 900px;
+        font-size: clamp(2.7rem, 4vw, 4.8rem);
+        line-height: 0.96;
+        letter-spacing: -0.06em;
+      }
+
+      .subtitle {
+        margin-top: 18px;
+        max-width: 820px;
+        color: var(--muted);
+        font-size: 1.1rem;
+      }
+
+      .hero-bottom {
+        margin-top: 28px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px 14px;
+      }
+
+      .meta-pill {
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.75);
+        color: var(--text);
+        border-radius: 999px;
+        padding: 9px 12px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .wrap {
+        padding-top: 10px;
+        padding-bottom: 80px;
+      }
+
+      .dashboard {
+        display: grid;
+        grid-template-columns: 1.1fr 1.9fr;
+        gap: 18px;
+        margin-bottom: 24px;
+      }
+
+      .panel,
+      .stat,
+      .card,
+      .north,
+      .mini,
+      .summary-card {
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .panel {
+        padding: 22px 20px;
+      }
+
+      .progress-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+
+      .progress-header strong {
+        font-size: 1rem;
+        letter-spacing: -0.03em;
+      }
+
+      .progress-value {
+        font-weight: 800;
+        color: var(--accent-strong);
+      }
+
+      .progress-track {
+        position: relative;
+        height: 12px;
+        border-radius: 999px;
+        overflow: hidden;
+        background: var(--surface-alt);
+        border: 1px solid rgba(148, 163, 184, 0.18);
+        margin-bottom: 10px;
+      }
+
+      .progress-fill {
+        position: absolute;
+        inset: 0 auto 0 0;
+        width: 0%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--accent), #6094ff);
+        box-shadow: inset 0 0 10px rgba(255,255,255,0.3);
+        transition: width 0.35s ease;
+      }
+
+      .progress-detail {
+        color: var(--muted);
+        font-size: 12px;
+        margin-top: 10px;
+      }
+
+      .panel-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 18px;
+      }
+
+      .action-btn {
+        border: 1px solid var(--border);
+        background: var(--surface-alt);
+        color: var(--text);
+        border-radius: 12px;
+        padding: 9px 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .action-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .stat {
+        padding: 18px 16px;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: clamp(1.35rem, 2vw, 2rem);
+        letter-spacing: -0.04em;
+      }
+
+      .stat span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .toolbar {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 6px 0 20px;
+      }
+
+      .filter-btn,
+      .searchbox {
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.8);
+        color: var(--text);
+        border-radius: 999px;
+        padding: 10px 14px;
+        min-height: 42px;
+      }
+
+      .filter-btn {
+        cursor: pointer;
+        font-weight: 700;
+        transition: all 0.2s ease;
+      }
+
+      .filter-btn.active {
+        background: var(--accent-soft);
+        border-color: rgba(29, 78, 216, 0.4);
+        color: var(--accent-strong);
+      }
+
+      .toolbar-spacer {
+        flex: 1;
+      }
+
+      .searchbox {
+        min-width: 220px;
+        outline: none;
+      }
+
+      .timeline {
+        position: relative;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 18px;
+        top: 12px;
+        bottom: 12px;
+        width: 2px;
+        background: linear-gradient(180deg, rgba(29,78,216,0.18), rgba(148,163,184,0.24));
+      }
+
+      .month {
+        position: relative;
+        padding-left: 52px;
+        margin-bottom: 14px;
+      }
+
+      .month-dot {
+        position: absolute;
+        left: 8px;
+        top: 26px;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fff;
+        border: 5px solid var(--accent);
+        box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.1);
+      }
+
+      .card {
+        overflow: hidden;
+        border-radius: 20px;
+      }
+
+      .card-head {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        width: 100%;
+        border: 0;
+        background: transparent;
+        padding: 18px 20px;
+        text-align: left;
+        color: var(--text);
+        cursor: pointer;
+      }
+
+      .card-head-main {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+        flex: 1;
+      }
+
+      .phase-tag {
+        display: inline-block;
+        padding: 6px 9px;
+        border-radius: 999px;
+        background: var(--accent-soft);
+        color: var(--accent-strong);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .month-label {
+        font-size: clamp(1.15rem, 1.6vw, 1.5rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+
+      .meta-summary {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .chevron {
+        display: inline-grid;
+        place-items: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 12px;
+        background: rgba(148, 163, 184, 0.08);
+        color: var(--muted);
+        transition: transform 0.2s ease;
+      }
+
+      .card.open .chevron {
+        transform: rotate(180deg);
+      }
+
+      .card-body {
+        display: none;
+        border-top: 1px solid var(--border);
+        padding: 0 20px 20px;
+      }
+
+      .card.open .card-body {
+        display: block;
+      }
+
+      .task {
+        display: grid;
+        grid-template-columns: 22px minmax(0, 1fr);
+        gap: 12px;
+        padding-top: 18px;
+      }
+
+      .task input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        margin-top: 4px;
+        accent-color: var(--accent);
+      }
+
+      .task .task-copy h3 {
+        margin: 0 0 4px;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent-strong);
+      }
+
+      .task .task-copy p {
+        margin: 0;
+        color: var(--text);
+      }
+
+      .task.done .task-copy h3,
+      .task.done .task-copy p {
+        opacity: 0.6;
+        text-decoration: line-through;
+      }
+
+      .empty-state {
+        padding: 32px 18px;
+        text-align: center;
+        color: var(--muted);
+        border: 1px dashed var(--border);
+        border-radius: 18px;
+        background: rgba(255,255,255,0.42);
+      }
+
+      .north {
+        margin-top: 24px;
+        padding: 24px 24px 18px;
+      }
+
+      .north h2 {
+        margin: 0 0 10px;
+        font-size: clamp(1.4rem, 2vw, 2rem);
+        letter-spacing: -0.04em;
+      }
+
+      .north p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .highlight {
+        color: var(--accent-strong);
+        font-weight: 700;
+      }
+
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid var(--border);
+        background: var(--surface-alt);
+        padding: 7px 11px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .toast {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 50;
+        background: rgba(24, 33, 45, 0.94);
+        color: white;
+        border-radius: 12px;
+        padding: 11px 16px;
+        box-shadow: var(--shadow);
+        opacity: 0;
+        transform: translateY(12px);
+        pointer-events: none;
+        transition: all 0.25s ease;
+      }
+
+      .toast.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 980px) {
+        .dashboard {
+          grid-template-columns: 1fr;
+        }
+
+        .stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 600px) {
+        .topbar-inner,
+        .hero-inner,
+        .wrap {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+
+        .hero-panel {
+          padding: 20px 18px 22px;
+        }
+
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .toolbar {
+          align-items: stretch;
+        }
+
+        .toolbar-spacer {
+          display: none;
+        }
+
+        .searchbox {
+          width: 100%;
+        }
+
+        .month {
+          padding-left: 42px;
+        }
+
+        .timeline::before {
+          left: 12px;
+        }
+
+        .month-dot {
+          left: 2px;
+          top: 20px;
+        }
+
+        .card-head {
+          padding: 16px;
+        }
+
+        .card-body {
+          padding: 0 16px 18px;
+        }
+
+        .meta-summary {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="brand">
+            <div class="brand-mark">UR</div>
+            <span>Uni Roadmap</span>
+          </div>
+          <div class="chip">Grade 11 → Applications</div>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="hero-panel">
+            <div class="eyebrow">Personalized admissions roadmap · OSSD · Grade 11</div>
+            <h1>From Grade 11 to your university applications.</h1>
+            <p class="subtitle">
+              A structured October 2026 → May 2028 plan for a high-achieving STEM applicant targeting
+              Hong Kong, Singapore, the U.S. and Canada.
+            </p>
+            <div class="hero-bottom">
+              <div class="meta-pill">Academic excellence</div>
+              <div class="meta-pill">STEM depth</div>
+              <div class="meta-pill">Leadership</div>
+              <div class="meta-pill">Piano & athletics</div>
+              <div class="meta-pill">Service</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <main class="wrap">
+        <section class="dashboard">
+          <div class="panel">
+            <div class="progress-header">
+              <strong>Roadmap progress</strong>
+              <span class="progress-value" id="progressText">0%</span>
+            </div>
+            <div class="progress-track" aria-label="Roadmap progress">
+              <div class="progress-fill" id="progressBar"></div>
+            </div>
+            <div class="progress-detail" id="progressDetail">
+              Check off tasks as you complete them. Progress is saved in this browser.
+            </div>
+            <div class="panel-actions">
+              <button class="action-btn" id="resetBtn" type="button">Reset progress</button>
+              <button class="action-btn" id="expandBtn" type="button">Expand all</button>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <strong>95–100%</strong>
+              <span>Academic target</span>
+            </div>
+            <div class="stat">
+              <strong>1</strong>
+              <span>Flagship STEM project</span>
+            </div>
+            <div class="stat">
+              <strong>2–3</strong>
+              <span>Major leadership initiatives</span>
+            </div>
+            <div class="stat">
+              <strong>18 mo.</strong>
+              <span>Foundation → applications</span>
+            </div>
+          </div>
+        </section>
+
+        <div class="toolbar" aria-label="Search and filters">
+          <button class="filter-btn active" type="button" data-filter="all">All</button>
+          <button class="filter-btn" type="button" data-filter="grade11">Grade 11</button>
+          <button class="filter-btn" type="button" data-filter="summer">Summer</button>
+          <button class="filter-btn" type="button" data-filter="grade12">Grade 12</button>
+          <div class="toolbar-spacer"></div>
+          <input
+            class="searchbox"
+            id="search"
+            type="search"
+            placeholder="Search roadmap…"
+            aria-label="Search roadmap"
+          />
+        </div>
+
+        <section class="timeline" id="timeline" aria-live="polite"></section>
+
+        <section class="north">
+          <h2>North Star</h2>
+          <p>
+            Build depth, not résumé clutter. The target profile is
+            <span class="highlight">
+              exceptional academics + external STEM achievement + one serious engineering/health/sports-science
+              project + measurable leadership + ARCT-level piano + meaningful athletics + lifeguarding/instruction
+            </span>.
+          </p>
+          <div class="tag-row">
+            <span class="tag">Math &amp; science</span>
+            <span class="tag">Engineering / health</span>
+            <span class="tag">Leadership</span>
+            <span class="tag">Piano</span>
+            <span class="tag">Athletics</span>
+            <span class="tag">Service</span>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" aria-live="polite"></div>
+
+    <script>
+      const months = [
+        ['October 2026', 'grade11', 'Foundation', ['Academics', 'Make Grade 11 the #1 priority; target 95%+ in every course. Confirm prerequisites for Waterloo, UBC, McGill, HKU, HKUST, CUHK, NUS and NTU.', 'STEM', 'Choose a flagship Sports × Biomechanics × Engineering/Technology project. Define the problem, research question, hypothesis, solution, equipment and measurable outcome.', 'Competitions', 'Begin Euclid and Canadian math-contest preparation; keep an error log.', 'Leadership', 'Choose 2–3 major StuCo initiatives and define measurable outcomes.', 'U.S.', 'Build a preliminary 20–25-school list and research testing and recommendation requirements.']],
+        ['November 2026', 'grade11', 'Build', ['Academics', 'Keep marks high and address any weak course before it becomes a final mark.', 'Flagship project', 'Move from idea to design: research existing solutions, set engineering requirements, create CAD and prototype #1.', 'Math', 'Increase contest preparation and review recurring errors.', 'Extracurriculars', 'Continue StuCo, Business Club, soccer, piano, Chinese and lifeguarding/instruction as applicable.', 'U.S.', 'Research SAT/ACT policies, OSSD interpretation, recommendations and school-specific requirements.']],
+        ['December 2026', 'grade11', 'First results', ['Flagship project', 'Build and test prototype #1. Document design, measurements, failures, modifications and results.', 'Leadership', 'Complete and document one meaningful StuCo initiative with participation/impact numbers.', 'Piano', 'Continue ARCT progression or performance work.', 'Academics', 'Begin January assessment preparation early.']],
+        ['January 2027', 'grade11', 'Academic peak', ['Academics', 'Prioritize school, then competitions, project and leadership. Protect semester marks.', 'Flagship project', 'Analyze prototype #1 and design prototype #2 based on evidence.', 'U.S.', 'Take a diagnostic SAT/ACT if relevant and decide whether serious preparation is needed.']],
+        ['February 2027', 'grade11', 'Technical depth', ['Math', 'Heavy Euclid preparation and contest practice.', 'Flagship project', 'Build prototype #2; consider sensors, data collection, Python, statistics, CAD or improved materials where genuinely useful.', 'Leadership', 'Complete a second substantial StuCo initiative.', 'Business', 'Continue DECA/FBLA preparation and competition.']],
+        ['March 2027', 'grade11', 'External validation', ['Math', 'Write major competitions and pursue documented external achievement beyond classroom grades.', 'Flagship project', 'Collect enough data to make defensible conclusions and quantify improvements.', 'Research', 'Explore a mentor, lab or teacher for summer research/project supervision.']],
+        ['April 2027', 'grade11', 'Package achievements', ['Achievement record', 'Create a master document covering academics, leadership, STEM, arts, athletics, service and awards.', 'Project', 'Move toward a complete research → design → prototype → testing → results package.', 'Leadership', 'Document measurable outcomes from StuCo initiatives.']],
+        ['May 2027', 'grade11', 'Finish strong', ['Academics', 'Do not coast. Protect Grade 11 final marks.', 'Project', 'Reach a legitimate stopping point; consider science fair, engineering competition, presentation or portfolio.', 'Summer', 'Choose one major summer objective: research, engineering project, entrepreneurship, health/sports-science project, or work + project.']],
+        ['June 2027', 'grade11', 'Lock Grade 11', ['Academics', 'Finish with excellent marks.', 'Portfolio', 'Finalize competition results, project documentation and leadership evidence.', 'Transition', 'Confirm summer plan and take a short break before the next phase.']],
+        ['July 2027', 'summer', 'Deep work', ['Primary summer project', 'Invest in one substantial project, ideally an extension of the Grade 11 Sports/Health × Engineering work.', 'Output', 'Aim for actual research, prototyping, data collection or a demonstrable product rather than certificates.']],
+        ['August 2027', 'summer', 'Application preparation', ['U.S.', 'Build the first draft of your activities list, honors list, personal-statement ideas and supplemental-essay ideas.', 'Canada', 'Finalize Waterloo, UBC and McGill program choices.', 'International', 'Finalize HKU, HKUST, CUHK, NUS and NTU program choices.', 'Planning', 'Create a master spreadsheet of program, prerequisites, testing, essays, references and deadlines.']],
+        ['September 2027', 'grade12', 'Launch applications', ['Academics', 'Start Grade 12 strongly; know your target programs and testing plan before deadlines arrive.', 'U.S.', 'Finalize testing if needed and prepare application materials.', 'Canada / Asia', 'Start applications where appropriate.', 'Project', 'Extend the existing project rather than starting a disconnected activity.']],
+        ['October 2027', 'grade12', 'Application season', ['U.S.', 'Begin serious Common App work and shape a coherent story: STEM + technical builder + leader + athlete + musician.', 'International', 'Prepare program-specific materials for Hong Kong and Singapore.', 'Canada', 'Prepare supplementary applications where applicable.']],
+        ['November 2027', 'grade12', 'Essays & submissions', ['U.S.', 'Finalize personal statement, supplements, activities, honors, recommendations and school reports.', 'Essays', 'Use stories that reveal how you think, not merely the most impressive résumé item.', 'Canada / Asia', 'Continue applications and required documents.']],
+        ['December 2027', 'grade12', 'Submit + maintain', ['Applications', 'Keep applications under control and submit according to each school’s actual deadline.', 'Academics', 'Do not let applications damage Grade 12 marks; academic performance remains central for many target programs.']],
+        ['January 2028', 'grade12', 'Final application push', ['Applications', 'Finish remaining U.S. Regular Decision, NUS, NTU, HKU, HKUST, CUHK, UBC, McGill and Waterloo materials according to their actual deadlines.', 'Academics', 'Continue Grade 12 at full strength.']],
+        ['February 2028', 'grade12', 'Scholarships & interviews', ['Scholarships', 'Complete scholarship applications and financial-aid materials.', 'Interviews', 'Prepare for any interviews or program-specific requests.', 'Academics', 'Maintain momentum rather than mentally graduating early.']],
+        ['March 2028', 'grade12', 'Follow-through', ['Applications', 'Respond promptly to any additional requests and keep records of submitted materials.', 'Academics', 'Keep grades strong through the final stretch.']],
+        ['April 2028', 'grade12', 'Decision analysis', ['Offers', 'Compare actual offers using program, curriculum, research, co-op, location, cost, scholarships and career/graduate-school pathways.', 'Fit', 'Choose based on your academic and personal priorities, not prestige alone.']],
+        ['May 2028', 'grade12', 'Transition', ['Decisions', 'Consolidate decisions and prepare for the next academic stage.', 'Reflection', 'Keep a record of projects, awards and experiences for future scholarships and opportunities.']]
+      ];
+
+      const storageKey = 'uni-roadmap-v2';
+      let saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+      let activeFilter = 'all';
+      let expandedAll = false;
+
+      function escapeHTML(value) {
+        return value.replace(/[&<>"']/g, (char) => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[char]));
+      }
+
+      function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(showToast.timer);
+        showToast.timer = setTimeout(() => toast.classList.remove('show'), 1800);
+      }
+
+      function render(filter = activeFilter) {
+        activeFilter = filter;
+        const query = (document.getElementById('search').value || '').toLowerCase().trim();
+        const root = document.getElementById('timeline');
+        root.innerHTML = '';
+
+        let visible = 0;
+
+        months.forEach((monthInfo, monthIndex) => {
+          const [month, phaseKey, phaseLabel, items] = monthInfo;
+
+          if (filter !== 'all' && phaseKey !== filter) return;
+
+          const searchText = (month + ' ' + phaseLabel + ' ' + items.join(' ')).toLowerCase();
+          if (query && !searchText.includes(query)) return;
+
+          visible++;
+
+          let completedCount = 0;
+          const tasksMarkup = [];
+
+          for (let i = 0; i < items.length; i += 2) {
+            const heading = items[i];
+            const description = items[i + 1];
+            const taskKey = `${monthIndex}-${i}`;
+            const checked = !!saved[taskKey];
+            if (checked) completedCount++;
+
+            tasksMarkup.push(`
+              <div class="task ${checked ? 'done' : ''}">
+                <input type="checkbox" data-key="${taskKey}" ${checked ? 'checked' : ''} aria-label="Mark task complete: ${escapeHTML(heading)}" />
+                <div class="task-copy">
+                  <h3>${escapeHTML(heading)}</h3>
+                  <p>${escapeHTML(description)}</p>
+                </div>
+              </div>
+            `);
+          }
+
+          const taskTotal = items.length / 2;
+          const isOpen = expandedAll || month === 'October 2026';
+
+          const card = document.createElement('article');
+          card.className = `month ${isOpen ? 'open' : ''}`;
+          card.innerHTML = `
+            <span class="month-dot"></span>
+            <div class="card ${isOpen ? 'open' : ''}">
+              <button class="card-head" type="button" aria-expanded="${isOpen}">
+                <div class="card-head-main">
+                  <span class="phase-tag">${escapeHTML(phaseLabel)}</span>
+                  <div class="month-label">${escapeHTML(month)}</div>
+                </div>
+                <div class="meta-summary">${completedCount}/${taskTotal} complete</div>
+                <div class="chevron">⌄</div>
+              </button>
+              <div class="card-body">
+                ${tasksMarkup.join('')}
+              </div>
+            </div>
+          `;
+
+          const header = card.querySelector('.card-head');
+          header.addEventListener('click', () => {
+            const panel = card.querySelector('.card');
+            panel.classList.toggle('open');
+            header.setAttribute('aria-expanded', String(panel.classList.contains('open')));
+          });
+
+          card.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+            checkbox.addEventListener('change', (event) => {
+              const key = event.target.dataset.key;
+              saved[key] = event.target.checked;
+              localStorage.setItem(storageKey, JSON.stringify(saved));
+              const task = event.target.closest('.task');
+              task.classList.toggle('done', event.target.checked);
+              updateProgress();
+              render(activeFilter);
+              showToast(event.target.checked ? 'Task completed' : 'Task reopened');
+            });
+          });
+
+          root.appendChild(card);
+        });
+
+        if (!visible) {
+          root.innerHTML = '<div class="empty-state">No roadmap items match your search.</div>';
+        }
+
+        updateProgress();
+      }
+
+      function updateProgress() {
+        const totalTasks = months.reduce((sum, monthInfo) => sum + (monthInfo[3].length / 2), 0);
+        const completedTasks = Object.values(saved).filter(Boolean).length;
+        const percent = totalTasks ? Math.round((completedTasks / totalTasks) * 100) : 0;
+
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const progressDetail = document.getElementById('progressDetail');
+
+        progressBar.style.width = `${percent}%`;
+        progressText.textContent = `${percent}%`;
+        progressDetail.textContent = `${completedTasks} of ${totalTasks} roadmap tasks completed. Progress is saved in this browser.`;
+      }
+
+      document.querySelectorAll('.filter-btn').forEach((button) => {
+        button.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach((item) => item.classList.remove('active'));
+          button.classList.add('active');
+          render(button.dataset.filter);
+        });
+      });
+
+      document.getElementById('search').addEventListener('input', () => render(activeFilter));
+
+      document.getElementById('expandBtn').addEventListener('click', () => {
+        expandedAll = !expandedAll;
+        document.getElementById('expandBtn').textContent = expandedAll ? 'Collapse all' : 'Expand all';
+        render(activeFilter);
+      });
+
+      document.getElementById('resetBtn').addEventListener('click', () => {
+        const confirmed = window.confirm('Reset all roadmap progress?');
+        if (!confirmed) return;
+        saved = {};
+        localStorage.removeItem(storageKey);
+        render(activeFilter);
+        showToast('Progress reset');
+      });
+
+      render();
+    </script>
+  </body>
+</html>
